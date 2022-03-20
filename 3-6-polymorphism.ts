@@ -75,9 +75,21 @@
 			};
 		}
 	}
-	// const machine = new CoffeeMaker(22);
-	const lattemachine = new LatteMaker(22, 'ABC');
-	lattemachine.makeCoffee(1);
-	// console.log(coffee);
-	// console.log(lattemachine.serialNumber);
+
+	class SweetCoffeeMaker extends CoffeeMaker {
+		private putSugar(): void {
+			console.log('Putting sugars...🍬');
+		}
+		makeCoffee(shots: number): CoffeeCup {
+			const coffee = super.makeCoffee(shots);
+			this.putSugar();
+			return {
+				...coffee,
+				hasMilk: false,
+			};
+		}
+	}
+
+	const sweetCoffee = new SweetCoffeeMaker(22);
+	sweetCoffee.makeCoffee(2);
 }
