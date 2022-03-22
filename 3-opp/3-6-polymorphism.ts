@@ -1,7 +1,8 @@
 {
 	type CoffeeCup = {
 		shots: number;
-		hasMilk: boolean;
+		hasMilk?: boolean;
+		hasSugar?: boolean;
 	};
 
 	interface ICoffeeMaker {
@@ -77,19 +78,20 @@
 	}
 
 	class SweetCoffeeMaker extends CoffeeMaker {
-		private putSugar(): void {
-			console.log('Putting sugars...🍬');
-		}
+		// private putSugar(): void {
+		// 	console.log('Putting sugars...🍬');
+		// }
 		makeCoffee(shots: number): CoffeeCup {
 			const coffee = super.makeCoffee(shots);
-			this.putSugar();
+			// this.putSugar();
 			return {
 				...coffee,
-				hasMilk: false,
+				hasSugar: true,
 			};
 		}
 	}
 
 	const sweetCoffee = new SweetCoffeeMaker(22);
-	sweetCoffee.makeCoffee(2);
+	const coffee = sweetCoffee.makeCoffee(1);
+	console.log(coffee);
 }
